@@ -1,4 +1,4 @@
-extends WeaponBase
+extends "res://scripts/weapons/WeaponBase.gd"
 
 @export var projectile_scene: PackedScene
 @export var range_hint: float = 600.0
