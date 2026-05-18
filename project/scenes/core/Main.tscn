@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/GameController.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/Swarmer.tscn" id="3"]
+[ext_resource type="Script" path="res://scripts/systems/EnemySpawner.gd" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/core/XPShard.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="6"]
+[ext_resource type="PackedScene" path="res://scenes/weapons/VoltNeedle.tscn" id="7"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1")
+xp_shard_scene = ExtResource("5")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Backdrop" type="ColorRect" parent="World"]
+offset_left = -4000.0
+offset_top = -4000.0
+offset_right = 4000.0
+offset_bottom = 4000.0
+color = Color(0.03, 0.03, 0.06, 1)
+
+[node name="Enemies" type="Node2D" parent="World"]
+
+[node name="Pickups" type="Node2D" parent="World"]
+
+[node name="Player" parent="World" instance=ExtResource("2")]
+position = Vector2(640, 360)
+
+[node name="Spawner" type="Node" parent="World"]
+script = ExtResource("4")
+enemy_scene = ExtResource("3")
+
+[node name="Camera2D" type="Camera2D" parent="World/Player"]
+current = true
+
+[node name="UI" type="Node" parent="."]
+
+[node name="HUD" parent="UI" instance=ExtResource("6")]
